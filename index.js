@@ -4,23 +4,26 @@ const env = require("dotenv")
 env.config()
 
 app.use(express.json());
-
+app.get("/", (req, res)=>{
+    res.send("<h1>Welcome to Bajaj<h1/>")
+})
 app.post("/bfhl",(req, res) => {
 
     var data = req.body;
     var num = [];
     var alpha = [];
-    for (let i = 0; i < data["data"].length; i++) {
-        if(isNaN(data["data"][i])){
-            alpha.push(data["data"][i]);
-        }else{
-            num.push(data["data"][i])
-        }
-    }
+
 
     //["A","1","334","B","8"]
 
     try {
+      for (let i = 0; i < data["data"].length; i++) {
+          if(isNaN(data["data"][i])){
+              alpha.push(data["data"][i]);
+          }else{
+              num.push(data["data"][i])
+          }
+      }
         res.status(200).json({
                 "is_success": true,
                 "user_id":"rohit_maheshwari_20062001",
